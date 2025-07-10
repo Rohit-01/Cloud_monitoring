@@ -12,7 +12,7 @@ A lightweight cloud-native monitoring solution built with **Python**, **Flask**,
 - [x]  Docker and Kubectl installed.
 - [x]  Code editor (Vscode)
 
-# ✨Let’s Start the Project ✨
+# Below are steps to run this project successfully
 
 ## **Part 1: Deploying the Flask application locally**
 
@@ -100,14 +100,11 @@ Create an ECR repository using Python:
 ```
 import boto3
 
-# Create an ECR client
 ecr_client = boto3.client('ecr')
 
-# Create a new ECR repository
-repository_name = 'my-ecr-repo'
+repository_name = 'my-cloud-native-monitoring-app'
 response = ecr_client.create_repository(repositoryName=repository_name)
 
-# Print the repository URI
 repository_uri = response['repository']['repositoryUri']
 print(repository_uri)
 ```
@@ -133,6 +130,7 @@ Create a node group in the EKS cluster.
 ### **Step 3: Create deployment and service**
 
 ```jsx
+#create deployment and service
 from kubernetes import client, config
 
 # Load Kubernetes configuration
@@ -157,7 +155,7 @@ deployment = client.V1Deployment(
                 containers=[
                     client.V1Container(
                         name="my-flask-container",
-                        image="568373317874.dkr.ecr.us-east-1.amazonaws.com/my-cloud-native-repo:latest",
+                        image="568373317874.dkr.ecr.us-east-1.amazonaws.com/my_monitoring_app_image:latest",
                         ports=[client.V1ContainerPort(container_port=5000)]
                     )
                 ]
@@ -190,7 +188,7 @@ api_instance.create_namespaced_service(
 )
 ```
 
-make sure to edit the name of the image on line 25 with your image Uri.
+Make sure to edit the name of the image in the deployment section with your image Uri.
 
 - Once you run this file by running “python3 eks.py” deployment and service will be created.
 - Check by running following commands:
