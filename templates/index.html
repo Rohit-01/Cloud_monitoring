@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>System Resource Monitor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      text-align: center;
+      padding: 40px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      width: 300px;
+    }
+    .stat {
+      font-size: 1.4em;
+      margin: 10px 0;
+    }
+    .alert {
+      color: red;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📊 System Usage</h2>
+    <div class="stat" id="cpu">CPU Usage: Loading...</div>
+    <div class="stat" id="memory">Memory Usage: Loading...</div>
+    <div class="alert" id="message"></div>
+  </div>
+
+  <script>
+    async function fetchStats() {
+      const res = await fetch("/api/stats");
+      const data = await res.json();
+      document.getElementById("cpu").innerText = `CPU Usage: ${data.cpu}%`;
+      document.getElementById("memory").innerText = `Memory Usage: ${data.memory}%`;
+      document.getElementById("message").innerText = data.message || "";
+    }
+
+    // Fetch every 5 seconds
+    fetchStats();
+    setInterval(fetchStats, 5000);
+  </script>
+</body>
+</html>
