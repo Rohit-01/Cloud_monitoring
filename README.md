@@ -1,4 +1,4 @@
-# **Cloud Based Resource Monitoring Python App on K8s!**
+# **Cloud-Based Resource Monitoring Python App on K8s!**
 
 A lightweight cloud-native monitoring solution built with **Python**, **Flask**, and **psutil**, containerized using **Docker**, and deployed on **Amazon EKS** with images hosted in **Amazon ECR**. This application provides real-time visibility into CPU and memory usage of your host system, with a simple web interface and alert logic for high resource usage.
 
