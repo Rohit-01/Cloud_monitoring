@@ -14,6 +14,7 @@ A lightweight cloud-native monitoring solution built with **Python**, **Flask**,
 
 # Below are steps to run this project successfully
 
+
 ## **Part 1: Deploying the Flask application locally**
 
 ### **Step 1: Clone the code**
